@@ -5,10 +5,13 @@ module Xeroizer
 
       set_xml_root_name 'Payments'
       set_permissions :read, :write
-
+      
+      include AttachmentModel::Extensions
     end
 
     class Payment < Base
+      
+      include Attachment::Extensions
 
       set_primary_key :payment_id
 

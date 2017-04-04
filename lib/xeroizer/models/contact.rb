@@ -9,6 +9,8 @@ module Xeroizer
     class ContactModel < BaseModel
 
       set_permissions :read, :write, :update
+      
+      include AttachmentModel::Extensions
 
     end
 
@@ -19,6 +21,8 @@ module Xeroizer
         'DELETED' =>    'Deleted',
         'ARCHIVED' => 'Archived'
       } unless defined?(CONTACT_STATUS)
+      
+      include Attachment::Extensions
 
       set_primary_key :contact_id
       set_possible_primary_keys :contact_id, :contact_number
@@ -43,6 +47,7 @@ module Xeroizer
       datetime_utc  :updated_date_utc, :api_name => 'UpdatedDateUTC'
       boolean       :is_supplier
       boolean       :is_customer
+      boolean       :has_attachments
       string        :website # read only
       decimal       :discount # read only
 
